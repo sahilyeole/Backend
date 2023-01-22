@@ -1,6 +1,6 @@
-
 require("dotenv").config();
 // const path = require("path");
+const  cors = require("cors");
 
 const express = require("express");
 const app = express();
@@ -26,12 +26,15 @@ app.use(express.json())
 app.use(`/api/v1/`, userRouter);
 
 
-
+app.use(cors({
+  origin: 'https://your-frontend-domain.netlify.com',
+  optionsSuccessStatus: 200
+}));
 
   // app.use('/.netlify/functions/handler', userRouter);  // path must route to lambda
   app.use ('*', (req, res) => {
     res.send('404 Not Found!!');   })
-    const PORT = process.env.PORT || 4001;
+    const PORT = process.env.PORT || 4002;
 app.listen(PORT, () => {
   console.log('Server is running on port 4000');
 });
