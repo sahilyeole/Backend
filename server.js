@@ -27,7 +27,7 @@ app.use(`/api/v1/`, userRouter);
 
 
 app.use(cors({
-  origin: 'https://your-frontend-domain.netlify.com',
+  origin: 'https://primevideoclonebysahil.netlify.app',
   optionsSuccessStatus: 200
 }));
 
