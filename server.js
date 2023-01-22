@@ -20,16 +20,18 @@ const connect = async () => {
 }
 connect();
 
+app.use(cors({
+  origin: 'https://primevideoclonebysahil.netlify.app',
+  optionsSuccessStatus: 200
+}));
+
 app.use(express.json())
 // app.use(express.static(path.join(__dirname, "../dist")))
 
 app.use(`/api/v1/`, userRouter);
 
 
-app.use(cors({
-  origin: 'https://primevideoclonebysahil.netlify.app',
-  optionsSuccessStatus: 200
-}));
+
 
   // app.use('/.netlify/functions/handler', userRouter);  // path must route to lambda
   app.use ('*', (req, res) => {
