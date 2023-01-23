@@ -35,19 +35,6 @@ if(!errors.isEmpty()){
   }
 }
 
-const getAllUsers = async (req, res) => {
-  try {
-    const users = await User.find();
-    res.json(users);
-  } catch (error) {
-    res.status(500).json({message: error.message})
-  }
-} 
-
-const getOneUser = (req, res) => {
-  res.json(res.user);
-}
-
 const login = async(req,res)=>{
   try {
     const {email,password} = req.body
@@ -89,27 +76,7 @@ const refreshToken = async (req,res)=>{
     res.status(500).json({message: error.message})
   }}
 
-const updateUser = async (req, res) => {
- 
-  if(req.body.watchlist != null){
-    res.user.watchlist = req.body.watchlist
-  }
-  try {
-    const updatedUser = await res.user.save()
-    res.json(updatedUser)
-  } catch (error) {
-    res.status(400).json({message: error.message})
-  }
-} 
 
-const deleteUser = async (req, res) => {
-try {
-  await res.user.remove()
-  res.json({message: "Deleted User"})
-} catch (error) {
-  res.status(500).json({message: error.message})
-}
-} 
 
  const addToWatchlist = async (req, res) => {
   try {
@@ -126,6 +93,7 @@ try {
     res.status(500).json({message: error.message})
   }
   }
+  
    const removeFromWatchlist = async (req, res) => {
     try {
       if(req.body.movie == null){
