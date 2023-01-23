@@ -93,7 +93,7 @@ const refreshToken = async (req,res)=>{
     res.status(500).json({message: error.message})
   }
   }
-  
+
    const removeFromWatchlist = async (req, res) => {
     try {
       if(req.body.movie == null){
@@ -111,10 +111,6 @@ const refreshToken = async (req,res)=>{
 module.exports = {
   signup,
   login,
-  deleteUser,
-  getAllUsers,
-  getOneUser,
-  updateUser,
   refreshToken,
   addToWatchlist,
   removeFromWatchlist
