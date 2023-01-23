@@ -1,14 +1,14 @@
 const User = require("../models/User")
-module.exports = async function findUser(req,res,next){//next is used to move to the next function in the middleware chain
+module.exports = async function findUser(req,res,next){
   let user
   try {
     user = await User.findById(req.params.id)
     if(user == null){
-      return res.status(404).json({message: "Cannot find user"})//404 is status code for not found
+      return res.status(404).json({message: "Cannot find user"})
     }
   } catch (error) {
-    return res.status(500).json({message: error.message})//500 is status code for server error  
+    return res.status(500).json({message: error.message})
   }
-res.user  = user  //to access the user in the next function we are storing it in res.user
-next()//to move to the next function
+res.user  = user  
+next()
 }

@@ -8,7 +8,6 @@ const jwt = require("jsonwebtoken")
 const signup = async (req, res) => {
   try {
     const {name,email,password} = req.body
-    // check if user already exists
     const userExist = await User.findOne({email });
     if (userExist) {
       return res.status(400).json({ message: "User already exists" });
@@ -114,8 +113,6 @@ try {
 
  const addToWatchlist = async (req, res) => {
   try {
-    // const {id, movie} = req.body
-    // const user = await User.findById(id)
     if(req.body.movie == null){
       return res.status(400).json({message: "Please enter a movie"})
     }

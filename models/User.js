@@ -1,4 +1,3 @@
-// user.js
 const mongoose = require('mongoose');
 const MovieSchema = new mongoose.Schema({
     adult: Boolean,
