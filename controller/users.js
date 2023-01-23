@@ -48,7 +48,7 @@ const login = async(req,res)=>{
       return res.status(400).json({message: "Invalid Password"})
     }
 
-    const accessToken = jwt.sign({userId: userExist._id},process.env.ACCESS_TOKEN,{expiresIn: "10s"})
+    const accessToken = jwt.sign({userId: userExist._id},process.env.ACCESS_TOKEN,{expiresIn: "10m"})
     const refreshToken = jwt.sign({userId: userExist._id},process.env.REFRESH_TOKEN,{expiresIn: "7d"})
     const newRefreshToken = new RefreshToken({token: refreshToken,userId: userExist._id})
     await newRefreshToken.save()
@@ -69,7 +69,7 @@ const refreshToken = async (req,res)=>{
     if(!tokenExist) return res.status(403).json({message: "Refresh token is not valid"})
     jwt.verify(refreshToken,process.env.REFRESH_TOKEN,(err,user)=>{
       if(err) return res.status(403).json({message: "Refresh token is not valid"})
-      const accessToken = jwt.sign({userId: user.userId},process.env.ACCESS_TOKEN,{expiresIn: "10s"})
+      const accessToken = jwt.sign({userId: user.userId},process.env.ACCESS_TOKEN,{expiresIn: "10m"})
       res.status(200).json({accessToken})
     })
   } catch (error) {
